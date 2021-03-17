@@ -1,20 +1,24 @@
 <#
-V0.1 - NeverUsedID
+V0.2 - NeverUsedID
 HELP:
 
-#Ausführen, wenn scripte verboten sind:
+#AusfÃ¼hren, wenn scripte verboten sind:
 
-Möglichkeit 1:
-Eingabeaufforderung öffnen und folgenden Befehl ausführen (Pfad zur heruntergeladenenen Datei anpassen) 
+MÃ¶glichkeit 1:
+Eingabeaufforderung Ã¶ffnen und folgenden Befehl ausfÃ¼hren (Pfad zur heruntergeladenenen Datei anpassen) 
 powershell -ExecutionPolicy ByPass -File C:\Users\rafael\Downloads\Install_ExtraRoles.ps1
 #>
 
 #
-# Configuration
+# Configuration (change this urls to update Version)
 
 $modurl="https://github.com/NotHunter101/ExtraRolesAmongUs/releases/download/v1.3.1(3.5s)/Extra.Roles.v.1.3.1-3.5s.zip"
+$crewlinkurl="https://github.com/OhMyGuus/BetterCrewLink/releases/download/v2.3.6/Better-CrewLink-Setup-2.3.6.exe"
+
+$crewlinkserver = "https://bettercrewl.ink"
+
 #
-# Wenn hier der Pfad zu Among us eingetragen wird, entfällt die Suche nach Among Us, was den installer beschleunigt
+# Wenn hier der Pfad zu Among us eingetragen wird, entfÃ¤llt die Suche nach Among Us, was den installer beschleunigt
 $amonguspath=""
 
 #
@@ -48,6 +52,44 @@ if ( $amonguspath -eq "" ) {
   }
 }
 
+#
+# ConfigureBetter Crewlink
+
+
+function Update-CrewlinkServer {
+  if ( $crewlinkconfig.serverURL -ne "$crewlinkserver" ) {
+    $updateCrewlinkServer = read-host "Der Bettercrewlink server ist nicht `"$crewlinkserver`" Soll er angepasst werden? (j/n)" 
+    if ( $updateCrewlinkServer -eq "j" ) {
+      $crewlinkconfig.serverURL = $crewlinkserver
+      copy-item "$env:APPDATA\bettercrewlink\config.json" "$env:APPDATA\bettercrewlink\config.json.bak" -force
+      # $crewlinkconfig | ConvertTo-Json - | out-file $env:APPDATA\bettercrewlink\config.json
+      $file = "$env:APPDATA\bettercrewlink\config.json"
+      $regex = '^(.*"serverURL": ).*$'
+      $replace ="`t`"serverURL`": `"$crewlinkserver`","
+      (Get-Content $env:APPDATA\bettercrewlink\config.json) -replace "$regex", "$replace" | Set-Content $file
+
+    }
+  }
+}
+
+if ( test-path "$env:APPDATA\bettercrewlink" ) { 
+  $crewlinkconfig = get-content "$env:APPDATA\bettercrewlink\config.json" | convertfrom-json
+  Update-CrewlinkServer
+} else {
+  $installbettercrewlink = read-host "Better Crewlink nicht gefunden, soll es heruntergeladen und installiert werden? (j/n)"
+  if ( $installbettercrewlink -eq "j" ) {
+    #
+    # Download Better Crewlink
+    Write-host "Better Crewlink wird heruntergeladen" -ForegroundColor Cyan
+    Invoke-WebRequest -Uri $crewlinkurl -OutFile BetterCrewLinkSetup.exe
+    Write-host "Setup wird ausgeführt, einfach durchklicken" -ForegroundColor Cyan
+    Start-Process BetterCrewLinkSetup.exe -wait
+    Update-CrewlinkServer
+  }
+}
+
+
+
 if ( $installationFound ) {
   #
   # Download mod
@@ -59,7 +101,7 @@ if ( $installationFound ) {
   Write-host "Mod wird in $amonguspath - $mod integriert" -ForegroundColor Cyan
   Copy-Item -path "$amonguspath" -Destination "$amonguspath - $mod" -Recurse -Force -Container 
   Copy-Item -path "Extra_Roles\*" -Destination "$amonguspath - $mod\" -Recurse -Force 
-  Write-host "Verknüpfung `"Among Us - $mod.lnk`" wird erstellt" -ForegroundColor Cyan
+  Write-host "VerknÃ¼pfung `"Among Us - $mod.lnk`" wird erstellt" -ForegroundColor Cyan
   $linkPath        = Join-Path ([Environment]::GetFolderPath("Desktop")) "Among Us - $mod.lnk"
   $targetPath      = Join-Path "$amonguspath - $mod" "Among Us.exe"
   $link            = (New-Object -ComObject WScript.Shell).CreateShortcut($linkPath)
