@@ -4,8 +4,8 @@ HELP:
 
 #AusfÃ¼hren, wenn scripte verboten sind:
 
-MÃ¶glichkeit 1:
-Eingabeaufforderung Ã¶ffnen und folgenden Befehl ausfÃ¼hren (Pfad zur heruntergeladenenen Datei anpassen) 
+Moeglichkeit 1:
+Eingabeaufforderung oeffnen und folgenden Befehl ausfÃ¼hren (Pfad zur heruntergeladenenen Datei anpassen) 
 powershell -ExecutionPolicy ByPass -File C:\Users\rafael\Downloads\Install_ExtraRoles.ps1
 #>
 
@@ -18,7 +18,7 @@ $crewlinkurl="https://github.com/OhMyGuus/BetterCrewLink/releases/download/v2.3.
 $crewlinkserver = "https://bettercrewl.ink"
 
 #
-# Wenn hier der Pfad zu Among us eingetragen wird, entfÃ¤llt die Suche nach Among Us, was den installer beschleunigt
+# Wenn hier der Pfad zu Among us eingetragen wird, entfaellt die Suche nach Among Us, was den installer beschleunigt
 $amonguspath=""
 
 #
@@ -39,7 +39,7 @@ if ( $amonguspath -eq "" ) {
     Write-Host "$amonguspath" -ForegroundColor Magenta
   } else {
     write-host "INFO: Among Us Pfad kann im Script angegeben werden, dann wird die installation stark beschleunigt." -ForegroundColor Cyan
-    if (!($AmongUsDisk = Read-Host "Bitte das Laufwerk auf dem Steam bzw. die Bibliothek installiert ist angeben! z.B. `"D:`" Einfach Enter drücken wenn es `"$defaultDisk`" ist")) { $AmongUsDisk= $defaultDisk }
+    if (!($AmongUsDisk = Read-Host "Bitte das Laufwerk auf dem Steam bzw. die Bibliothek installiert ist angeben (z.B. `"D:`") - Enter fuer`"$defaultDisk`"")) { $AmongUsDisk= $defaultDisk }
     $steamappsfolders = Get-ChildItem $AmongUsDisk\ -recurse -ErrorAction SilentlyContinue | Where-Object {$_.PSIsContainer -eq $true -and $_.Name -match "steamapps"} 
     ForEach ( $steamappsfolder in $steamappsfolders ) {
       if ( test-path "$($steamappsfolder.FullName)\common\Among Us"  ) {
@@ -101,13 +101,13 @@ if ( $installationFound ) {
   Write-host "Mod wird in $amonguspath - $mod integriert" -ForegroundColor Cyan
   Copy-Item -path "$amonguspath" -Destination "$amonguspath - $mod" -Recurse -Force -Container 
   Copy-Item -path "Extra_Roles\*" -Destination "$amonguspath - $mod\" -Recurse -Force 
-  Write-host "VerknÃ¼pfung `"Among Us - $mod.lnk`" wird erstellt" -ForegroundColor Cyan
+  Write-host "Verknuepfung `"Among Us - $mod.lnk`" wird auf Desktop erstellt" -ForegroundColor Cyan
   $linkPath        = Join-Path ([Environment]::GetFolderPath("Desktop")) "Among Us - $mod.lnk"
   $targetPath      = Join-Path "$amonguspath - $mod" "Among Us.exe"
   $link            = (New-Object -ComObject WScript.Shell).CreateShortcut($linkPath)
   $link.TargetPath = $targetPath
   $link.Save()
-  $startAmongUs = read-host "Among us direkt starten? (j/n)"
+  $startAmongUs = read-host "Among Us direkt starten? (j/n)"
   if ( $startAmongUs -eq "j" ) {
     . "$amonguspath - $mod\Among Us.exe"
   }
