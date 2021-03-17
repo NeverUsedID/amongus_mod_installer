@@ -2,11 +2,11 @@
 V0.2 - NeverUsedID
 HELP:
 
-#AusfÃ¼hren, wenn scripte verboten sind:
+#Ausfuehren, wenn scripte verboten sind:
 
 Moeglichkeit 1:
-Eingabeaufforderung oeffnen und folgenden Befehl ausfÃ¼hren (Pfad zur heruntergeladenenen Datei anpassen) 
-powershell -ExecutionPolicy ByPass -File C:\Users\rafael\Downloads\Install_ExtraRoles.ps1
+Eingabeaufforderung oeffnen und folgenden Befehl ausfuehren (Pfad zur heruntergeladenenen Datei anpassen) 
+powershell -ExecutionPolicy ByPass -File C:\Users\username\Downloads\Install_ExtraRoles.ps1
 #>
 
 #
@@ -84,7 +84,6 @@ if ( test-path "$env:APPDATA\bettercrewlink" ) {
     Invoke-WebRequest -Uri $crewlinkurl -OutFile BetterCrewLinkSetup.exe
     Write-host "Setup wird ausgeführt, einfach durchklicken" -ForegroundColor Cyan
     Start-Process BetterCrewLinkSetup.exe -wait
-    Update-CrewlinkServer
   }
 }
 
