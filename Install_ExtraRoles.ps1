@@ -1,4 +1,7 @@
-﻿<#Hilfe:
+<#
+V0.1 - NeverUsedID
+HELP:
+
 #Ausführen, wenn scripte verboten sind:
 
 Möglichkeit 1:
@@ -6,10 +9,17 @@ Eingabeaufforderung öffnen und folgenden Befehl ausführen (Pfad zur herunterge
 powershell -ExecutionPolicy ByPass -File C:\Users\rafael\Downloads\Install_ExtraRoles.ps1
 #>
 
+#
+# Configuration
 
-#Wenn hier der Pfad zu Among us eingetragen wird, entfällt die Suche nach Among Us, was den installer beschleunigt
-$amonguspath=""
 $modurl="https://github.com/NotHunter101/ExtraRolesAmongUs/releases/download/v1.3.1(3.5s)/Extra.Roles.v.1.3.1-3.5s.zip"
+#
+# Wenn hier der Pfad zu Among us eingetragen wird, entfällt die Suche nach Among Us, was den installer beschleunigt
+$amonguspath=""
+
+#
+# Main
+
 $mod = "Extra_Roles_NeverUsedID"
 $defaultDisk="C:"
 $AmongUsDisk=""
