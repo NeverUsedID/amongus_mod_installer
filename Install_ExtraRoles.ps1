@@ -1,5 +1,5 @@
 <#
-V0.2 - NeverUsedID
+V0.2a - NeverUsedID
 HELP:
 
 #Ausfuehren, wenn scripte verboten sind:
