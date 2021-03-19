@@ -13,7 +13,7 @@ powershell -ExecutionPolicy ByPass -File C:\Users\username\Downloads\Install_Ext
 # Configuration (change this urls to update Version)
 
 $modurl="https://github.com/NotHunter101/ExtraRolesAmongUs/releases/download/v1.3.1(3.5s)/Extra.Roles.v.1.3.1-3.5s.zip"
-$crewlinkurl="https://github.com/OhMyGuus/BetterCrewLink/releases/download/v2.3.6/Better-CrewLink-Setup-2.3.6.exe"
+$crewlinkurl="https://github.com/OhMyGuus/BetterCrewLink/releases/download/v2.4.0/Better-CrewLink-Setup-2.4.0.exe"
 
 $crewlinkserver = "https://bettercrewl.ink"
 
