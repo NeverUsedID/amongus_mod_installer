@@ -12,7 +12,12 @@ powershell -ExecutionPolicy ByPass -File C:\Users\username\Downloads\Install_Ext
 #
 # Configuration (change this urls to update Version)
 
+#Town of us mod: https://github.com/slushiegoose/Town-Of-Us/releases/download/v1.1.0/TownOfUs-v1.1.0-2020.12.9s.zip
+#$modurl="https://github.com/slushiegoose/Town-Of-Us/releases/download/v1.1.0/TownOfUs-v1.1.0-2020.12.9s.zip"
+
+#Other Roles Mod (default):
 $modurl="https://github.com/NotHunter101/ExtraRolesAmongUs/releases/download/v1.3.1(3.5s)/Extra.Roles.v.1.3.1-3.5s.zip"
+
 $crewlinkurl="https://github.com/OhMyGuus/BetterCrewLink/releases/download/v2.4.0/Better-CrewLink-Setup-2.4.0.exe"
 
 $crewlinkserver = "https://bettercrewl.ink"
