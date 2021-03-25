@@ -16,30 +16,17 @@ Powershell starten und set-executionpolicy remotesigned ausfÃ¼hren. In Zukunft
 
 Param (
 [String]$releaseid = "",
-[String]$modid = ""
+[String]$modid = "",
+[String]$streamer = "NeverUsedID" #Streamer wird fuer den Orndernamen verwendet, damit nicht versehentlich andere Verionen Ueberschrieben werden
 )
-
-
-#
-# Configuration (change this urls to update Version)
-
-#Streamer wird fuer den Orndernamen verwendet, damit nicht versehentlich andere Verionen Ã¼berschrieben werden
-$streamer = "NeverUsedID" #Keine Leerzeichen, keine Sonderzeichen!
 
 #
 # Wenn hier der Pfad zu Among us eingetragen wird, entfaellt die Suche nach Among Us, was den installer beschleunigt, vro allem auf nicht SSD Systemen
 $amonguspath=""
 
-
 #Crewlink URL
 $crewlinkurl="https://github.com/OhMyGuus/BetterCrewLink/releases/download/v2.4.0/Better-CrewLink-Setup-2.4.0.exe"
 $crewlinkserver = "https://bettercrewl.ink"
-
-
-#
-# Some configs
-#
-$defaultDisk="C:"
 
 #List your mods here with relative Github Download paths:
 #Hier koennen die Mods mit relativen Githubpfaden angegeben werden, die installiert werden koennen.
@@ -49,15 +36,12 @@ $modurls.add("TheOtherRoles", "/Eisbison/TheOtherRoles/releases")
 $modurls.add("TownOfUs", "/slushiegoose/Town-Of-Us/releases")
 
 
-
-
-
-
 ########
 # Main #
 ########
 
 #set default values 
+$defaultDisk="C:"
 $AmongUsDisk=""
 $steamappsfolders =""
 
