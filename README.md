@@ -19,3 +19,8 @@ What are the scripts do:
 - This script can Update you installed Version
 
 The .bat is only used, because powershell scripts are disabled on most systems per default.
+
+
+# HowTo
+The Script creates a folder with a "Streamer" name at the end to ensure no existing Verison are overwritten. You can Change the tag in the Batchscript.
+Its also possible to define which Mod and Version is installed, without asking the User.
