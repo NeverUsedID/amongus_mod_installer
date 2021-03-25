@@ -44,8 +44,12 @@ $defaultDisk="C:"
 #List your mods here with relative Github Download paths:
 #Hier koennen die Mods mit relativen Githubpfaden angegeben werden, die installiert werden koennen.
 $modurls = @{}
-$modurls.add("TownOfUs", "/slushiegoose/Town-Of-Us/releases")
 $modurls.add("ExtraRoles", "/NotHunter101/ExtraRolesAmongUs/releases")
+$modurls.add("TheOtherRoles", "/Eisbison/TheOtherRoles/releases")
+$modurls.add("TownOfUs", "/slushiegoose/Town-Of-Us/releases")
+
+
+
 
 
 
