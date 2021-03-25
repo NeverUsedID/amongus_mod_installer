@@ -22,7 +22,7 @@ The .bat is only used, because powershell scripts are disabled on most systems p
 
 
 # HowTo
--For Players
+- For Players
 Download the release and execute the "execute_mod_installer.bat" file. As you downloaded the file from Internet, Windows 10 will ask you if you really want to execute the file. Click on "more informations" and then execute anyway, if that happens.
 
 - For Streamers
