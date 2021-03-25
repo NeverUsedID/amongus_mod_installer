@@ -83,7 +83,6 @@ ForEach ( $release in $releases ) {
   write-host "$releasenumber - $release"
   $releasenumber++
 }
-$releases.Length
 if ( $releaseId -eq "" -and $releases.Length -ne "1"  ) {
   $releaseId = read-host "Welches Release soll genutzt werden, meisst is es `"0`"."
 } else {
