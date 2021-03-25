@@ -1,6 +1,6 @@
 <#
-V0.3 - NeverUsedID
-Installiert ausgewählete Mods und bietet die Moeglichkeit an, Crewlink zu installieren, wenn keinen Crewlinkconfig gefunden wird. Setzt den Crewlinkserver auf Standard zurueck.
+V0.3b - NeverUsedID
+Installiert ausgewaehlte Mods und bietet die Moeglichkeit an, Crewlink zu installieren, wenn keinen Crewlinkconfig gefunden wird. Setzt den Crewlinkserver auf Standard zurueck.
 
 HELP:
 
@@ -11,7 +11,7 @@ Eingabeaufforderung oeffnen und folgenden Befehl ausfuehren (Pfad zur herunterge
 powershell -ExecutionPolicy ByPass -File C:\Users\username\Downloads\Install_ExtraRoles.ps1
 
 Moeglichkeit 2:
-Powershell starten und set-executionpolicy remotesigned ausführen. In Zukunft kann das Script dann direket ausgeführt werden.
+Powershell starten und set-executionpolicy remotesigned ausfÃ¼hren. In Zukunft kann das Script dann direket ausgefÃ¼hrt werden.
 #>
 
 Param (
@@ -23,7 +23,7 @@ Param (
 #
 # Configuration (change this urls to update Version)
 
-#Streamer wird für den Orndernamen verwendet, damit nicht versehentlich andere Verionen überschrieben werden
+#Streamer wird fuer den Orndernamen verwendet, damit nicht versehentlich andere Verionen Ã¼berschrieben werden
 $streamer = "NeverUsedID" #Keine Leerzeichen, keine Sonderzeichen!
 
 #
@@ -99,8 +99,11 @@ ForEach ( $release in $releases ) {
   write-host "$releasenumber - $release"
   $releasenumber++
 }
-if ( $releaseId -eq "" ) {
-  $releaseId = read-host "Welches Release soll genutzt werden, meißt is es `"0`". Bei `"Town of us`" muss auf das neuere Monatsdatum geachtet werden!"
+$releases.Length
+if ( $releaseId -eq "" -and $releases.Length -ne "1"  ) {
+  $releaseId = read-host "Welches Release soll genutzt werden, meisst is es `"0`"."
+} else {
+  $releaseId = 0
 }
 $modDownloadUrl = "$modurl$($releases[$releaseId])"
 
@@ -194,8 +197,3 @@ if ( $installationFound ) {
   Write-host "Fehler: Among Us nicht gefunden!" -ForegroundColor Yellow
   read-host "Enter zum schliessen"
 }
-
-
-
-
-
