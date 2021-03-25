@@ -18,4 +18,4 @@ What are the scripts do:
 - creates a desktop shortcut
 - This script can Update you installed Version
 
-The .bat is only used, because powershell scripts a disabled on most systems per default.
+The .bat is only used, because powershell scripts are disabled on most systems per default.
