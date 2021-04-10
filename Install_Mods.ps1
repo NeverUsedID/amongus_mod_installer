@@ -162,7 +162,7 @@ if ( $installationFound ) {
   Write-host "Mod wird entpackt" -ForegroundColor Cyan
   Expand-Archive -LiteralPath "$mod.zip" -DestinationPath "$mod" -force
   Write-host "Mod wird in $amonguspath - $folderExtension integriert" -ForegroundColor Cyan
-  Copy-Item -path "$amonguspath" -Destination "$amonguspath - $folderExtension" -Recurse -Force -Container 
+  Copy-Item -path "$amonguspath" -Destination "$amonguspath - $folderExtension" -Recurse -Force
   Copy-Item -path "$mod\*" -Destination "$amonguspath - $folderExtension\" -Recurse -Force 
   Write-host "Verknuepfung `"Among Us - $mod - $streamer.lnk`" wird auf Desktop erstellt" -ForegroundColor Cyan
   $linkPath        = Join-Path ([Environment]::GetFolderPath("Desktop")) "Among Us - $mod.lnk"
