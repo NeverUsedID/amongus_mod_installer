@@ -1,5 +1,5 @@
+
 <#
-V0.3b - NeverUsedID
 Installiert ausgewaehlte Mods und bietet die Moeglichkeit an, Crewlink zu installieren, wenn keinen Crewlinkconfig gefunden wird. Setzt den Crewlinkserver auf Standard zurueck.
 
 HELP:
@@ -19,6 +19,8 @@ Param (
 [String]$modid = "",
 [String]$streamer = "NeverUsedID" #Streamer wird fuer den Orndernamen verwendet, damit nicht versehentlich andere Verionen Ueberschrieben werden
 )
+
+$version = "V0.4 - NeverUsedID"
 
 #
 # Wenn hier der Pfad zu Among us eingetragen wird, entfaellt die Suche nach Among Us, was den installer beschleunigt, vro allem auf nicht SSD Systemen
@@ -44,6 +46,9 @@ $modurls.add("TownOfUs", "/slushiegoose/Town-Of-Us/releases")
 $defaultDisk="C:"
 $AmongUsDisk=""
 $steamappsfolders =""
+
+#Show Version
+write-host "Among Us Mod Downloader - $version" -ForegroundColor green
 
 #Ask for mod number to install it later
 $modnumber = 0
@@ -162,6 +167,14 @@ if ( $installationFound ) {
   Write-host "Mod wird entpackt" -ForegroundColor Cyan
   Expand-Archive -LiteralPath "$mod.zip" -DestinationPath "$mod" -force
   Write-host "Mod wird in $amonguspath - $folderExtension integriert" -ForegroundColor Cyan
+  if (  Test-Path "$amonguspath - $folderExtension.old" -ErrorAction SilentlyContinue ) {
+    write-host "Altes Backup des Mods `"$amonguspath - $folderExtension.old`" wird geloescht" 
+    Remove-Item -Recurse -Force "$amonguspath - $folderExtension.old"
+  }
+  if ( Test-Path "$amonguspath - $folderExtension" -ErrorAction SilentlyContinue  ) {
+    write-host "Alte Installation gefunden, wird in `"$amonguspath - $folderExtension.old`" umbenannt"
+    rename-item "$amonguspath - $folderExtension" "$amonguspath - $folderExtension.old"
+  }
   Copy-Item -path "$amonguspath" -Destination "$amonguspath - $folderExtension" -Recurse -Force
   Copy-Item -path "$mod\*" -Destination "$amonguspath - $folderExtension\" -Recurse -Force 
   Write-host "Verknuepfung `"Among Us - $mod - $streamer.lnk`" wird auf Desktop erstellt" -ForegroundColor Cyan
